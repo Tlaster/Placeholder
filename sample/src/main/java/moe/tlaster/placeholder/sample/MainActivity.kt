@@ -38,27 +38,22 @@ class MainActivity : ComponentActivity() {
                                     )
                                 },
                                 text = {
-                                    Column {
-                                        TextPlaceHolder(
-                                            modifier = Modifier.fillMaxWidth(0.4f),
-                                            delayMillis = delay,
-                                        )
-                                    }
+                                    TextPlaceHolder(
+                                        length = 10,
+                                        delayMillis = delay,
+                                    )
                                 },
                                 secondaryText = {
                                     TextPlaceHolder(
-                                        modifier = Modifier.fillMaxWidth(),
+                                        length = 50,
                                         delayMillis = delay,
                                     )
                                 },
                                 overlineText = {
-                                    Column {
-                                        Spacer(modifier = Modifier.height(8.dp))
-                                        TextPlaceHolder(
-                                            modifier = Modifier.fillMaxWidth(0.2f),
-                                            delayMillis = delay,
-                                        )
-                                    }
+                                    TextPlaceHolder(
+                                        length = 20,
+                                        delayMillis = delay,
+                                    )
                                 }
                             )
                         }

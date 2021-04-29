@@ -4,27 +4,54 @@ import androidx.compose.animation.animateColor
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.text.InlineTextContent
+import androidx.compose.foundation.text.appendInlineContent
 import androidx.compose.material.LocalTextStyle
+import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.PlaceholderVerticalAlign
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.delay
 
+private const val ID_PlaceHolder = "placeholder"
+
 @Composable
 fun TextPlaceHolder(
-    modifier: Modifier,
+    modifier: Modifier = Modifier,
+    length: Int,
     durationMillis: Int = PlaceholderConstants.DefaultDurationMillis,
     delayMillis: Long = 0,
     color: PlaceholderColors = PlaceholderConstants.DefaultColor,
 ) {
-    Placeholder(
-        modifier = modifier.height(LocalTextStyle.current.fontSize.value.dp),
-        durationMillis = durationMillis,
-        delayMillis = delayMillis,
-        color = color,
+    val value = buildAnnotatedString {
+        repeat(length) {
+            appendInlineContent(ID_PlaceHolder)
+        }
+    }
+    Text(
+        text = value, inlineContent = mapOf(
+            ID_PlaceHolder to InlineTextContent(
+                androidx.compose.ui.text.Placeholder(
+                    width = LocalTextStyle.current.fontSize,
+                    height = LocalTextStyle.current.fontSize,
+                    placeholderVerticalAlign = PlaceholderVerticalAlign.TextCenter
+                )
+            ) {
+                Placeholder(
+                    modifier = modifier.fillMaxSize(),
+                    durationMillis = durationMillis,
+                    delayMillis = delayMillis,
+                    color = color,
+                )
+            },
+        )
     )
 }
 
