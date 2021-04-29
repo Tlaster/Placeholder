@@ -27,7 +27,7 @@ ListItem(
     },
     text = {
         TextPlaceHolder(
-            modifier = Modifier.fillMaxWidth(),
+            length = 50,
             delayMillis = 100,
         )
     },
