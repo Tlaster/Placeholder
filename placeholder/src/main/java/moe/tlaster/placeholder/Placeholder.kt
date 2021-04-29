@@ -36,7 +36,9 @@ fun TextPlaceHolder(
         }
     }
     Text(
-        text = value, inlineContent = mapOf(
+        modifier = modifier,
+        text = value,
+        inlineContent = mapOf(
             ID_PlaceHolder to InlineTextContent(
                 androidx.compose.ui.text.Placeholder(
                     width = LocalTextStyle.current.fontSize,
@@ -45,7 +47,7 @@ fun TextPlaceHolder(
                 )
             ) {
                 Placeholder(
-                    modifier = modifier.fillMaxSize(),
+                    modifier = Modifier.fillMaxSize(),
                     durationMillis = durationMillis,
                     delayMillis = delayMillis,
                     color = color,
